@@ -54,7 +54,7 @@ class ZenithDashboard extends StatelessWidget {
                 border: Border.all(color: Colors.red.withOpacity(0.3)),
               ),
               child: const Text(
-                "CORE SYSTEM INITIALIZED",
+                "SYSTEM ONLINE: WAITING FOR COMMANDS",
                 style: TextStyle(color: Colors.white, letterSpacing: 2),
               ),
             ),
