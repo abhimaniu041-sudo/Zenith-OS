@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "701075822037",
+    "project_id": "zenith-os-2d7a4",
+    "storage_bucket": "zenith-os-2d7a4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:701075822037:android:24f47b9261181c988f995c",
+        "android_client_info": {
+          "package_name": "com.zenith.os"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgLBRlv-K_JTekAc2y8o81Up1fL0KaC4E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
