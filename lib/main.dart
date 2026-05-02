@@ -1,60 +1,65 @@
 import 'package:flutter/material.dart';
 
+void main() {
+  runApp(const ZenithOS());
+}
+
+class ZenithOS extends StatelessWidget {
+  const ZenithOS({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Zenith OS',
+      theme: ThemeData(
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        primaryColor: const Color(0xFFDC143C), // Crimson Red
+      ),
+      home: const ZenithDashboard(),
+    );
+  }
+}
+
 class ZenithDashboard extends StatelessWidget {
+  const ZenithDashboard({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
-        children: [
-          // Background Glow
-          Positioned(
-            top: -100,
-            right: -100,
-            child: Container(
-              width: 300,
-              height: 300,
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: const Text(
+          "ZENITH OS",
+          style: TextStyle(
+            color: Color(0xFFDC143C),
+            fontWeight: FontWeight.bold,
+            letterSpacing: 4,
+          ),
+        ),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.bolt, color: Color(0xFFDC143C), size: 100),
+            const SizedBox(height: 20),
+            Container(
+              padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: Colors.red.withOpacity(0.15),
-                shape: BoxShape.circle,
+                color: Colors.white.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: Colors.red.withOpacity(0.3)),
+              ),
+              child: const Text(
+                "CORE SYSTEM INITIALIZED",
+                style: TextStyle(color: Colors.white, letterSpacing: 2),
               ),
             ),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 50),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("ZENITH OS", style: TextStyle(color: Colors.red, fontSize: 32, fontWeight: FontWeight.bold, letterSpacing: 5)),
-                Text("CORE CONTROL CENTER", style: TextStyle(color: Colors.white38, fontSize: 12)),
-                SizedBox(height: 40),
-                
-                // Glassmorphism Card
-                Container(
-                  padding: EdgeInsets.all(20),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.05),
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(color: Colors.red.withOpacity(0.2)),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("AI ASSISTANT", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
-                          Text("Online & Ready", style: TextStyle(color: Colors.green, fontSize: 10)),
-                        ],
-                      ),
-                      Icon(Icons.bolt, color: Colors.red, size: 40),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
