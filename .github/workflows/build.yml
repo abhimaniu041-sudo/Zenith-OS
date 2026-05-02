@@ -1,13 +1,20 @@
-dependencies:
-  flutter:
-    sdk: flutter
-  firebase_core: ^3.0.0
-  firebase_auth: ^5.0.0
-  cloud_firestore: ^5.0.0
-  google_generative_ai: ^0.4.0
-  # Shizuku dependency from GitHub
-  shizuku_channel:
-    git:
-      url: https://github.com/RikkaApps/shizuku-api.git
-      path: flutter/shizuku_channel
-  pdf: ^3.10.8
+name: Zenith OS Build
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable'
+      - run: flutter pub get
+      - run: flutter build apk --debug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: zenith-os-debug-apk
+          path: build/app/outputs/flutter-apk/app-debug.apk
