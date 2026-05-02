@@ -3,18 +3,45 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
+    name: Build Flutter APK
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
+      # 1. Checkout the code from your repository
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Setup Java environment for Android build
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      # 3. Setup Flutter environment
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-      - run: flutter pub get
-      - run: flutter build apk --debug
-      - name: Upload APK
+          flutter-version: '3.19.0' # Aap apni pasand ka version yahan set kar sakte hain
+
+      # 4. Get all dependencies (including Firebase & Shizuku)
+      - name: Install Dependencies
+        run: flutter pub get
+
+      # 5. Build the Debug APK
+      - name: Build APK
+        run: flutter build apk --debug
+
+      # 6. Upload the generated APK as a GitHub Artifact
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: zenith-os-debug-apk
+          name: zenith-os-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
+          retention-days: 7
